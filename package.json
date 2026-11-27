@@ -1,0 +1,13 @@
+{
+  "name": "fah-cockpit",
+  "version": "0.14.0",
+  "description": "FAH-Cockpit – Stand und offene To-dos aller Projekte unter ~/claude, lokal auf dem Mac",
+  "type": "module",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test tests/"
+  }
+}
