@@ -1,7 +1,8 @@
 # FAH-Cockpit
 
-Stand und offene To-dos aller Projekte unter `~/claude` auf einen Blick – lokal auf dem Mac unter
-**http://localhost:8130**.
+Mac-App für Stand und offene To-dos aller Projekte unter `~/claude` – mit eigenem Fenster, Menüleisten-Symbol
+(„wartet auf dich“, Nutzungslimit) und Mitteilungen. Claude arbeitet Aufträge im Hintergrund ab, du gibst nur Schritte nach
+außen frei.
 
 - **Übersicht:** alle Projekte mit Version, letzter Änderung, Git-Zustand (nicht eingecheckt / nicht gepusht) und Zahl offener To-dos.
 - **Offene To-dos:** alle To-dos über alle Projekte, direkt abhakbar.
@@ -28,8 +29,9 @@ Stand und offene To-dos aller Projekte unter `~/claude` auf einen Blick – loka
 
 Stand und To-dos kommen aus dem Vault `~/claude/Arbeit/maschine/projekte/<Ordner>.md`, den Git-Teil misst das
 Cockpit bei jedem Aufruf selbst (nur lokal, kein `git fetch`).
-Die Seite aktualisiert sich selbst: alle 30 s, solange der Tab sichtbar ist (verdeckt: Pause, beim Zurückkommen sofort);
-neu gezeichnet wird nur bei Änderungen und nie, während du tippst. Der Server startet per LaunchAgent mit der Anmeldung. Aufbau und Gründe: [docs/design.md](docs/design.md).
+Das Fenster aktualisiert sich selbst: alle 30 s, solange es sichtbar ist (verdeckt: Pause, beim Zurückkommen sofort);
+neu gezeichnet wird nur bei Änderungen und nie, während du tippst. Den Dienst dahinter startet die App selbst (nur auf
+127.0.0.1:8130, auf Wunsch beim Anmelden). Aufbau und Gründe: [docs/design.md](docs/design.md).
 
 ## So sieht es aus
 
@@ -62,24 +64,27 @@ jeder sichtbaren Änderung neu und bedient dabei die Oberfläche).
 
 ![Einstellungen](docs/screenshots/einstellungen.png)
 
-## Installation auf einem Mac (seit 0.7.0)
+## Installation
 
-**FAH-Cockpit.app** enthält alles: offizielles Node 26 LTS, den Cockpit-Code, eigenes Fenster, Menüleisten-Symbol mit
-„wartet auf dich“ und Nutzungslimit, echte Mitteilungen. ZIP: `NEUE ZIPs/Eigene Apps/Mac-Apps/fah-cockpit_release.zip`
-→ nach /Applications ziehen → starten. Der **Einrichtungs-Assistent** (Menü FAH-Cockpit → Einrichtung …, ⌘,) prüft
-Claude Code (installieren/anmelden), git, Projektordner, Vault, Dienst, Mitteilungen und „Beim Anmelden starten“.
-Bauen: `mac/bauen.sh` (lädt Node einmal von nodejs.org und prüft die SHA-256, signiert mit dem Apple-Development-Zertifikat).
+1. `fah-cockpit_release.zip` unter **Releases** laden, entpacken und **FAH-Cockpit.app** in „Programme“ ziehen.
+2. Starten. Die App ist mit einem Entwickler-Zertifikat signiert, aber nicht notarisiert: Fragt macOS nach, unter
+   Systemeinstellungen → Datenschutz & Sicherheit „Trotzdem öffnen“ wählen.
+3. Der **Einrichtungs-Assistent** (Menü FAH-Cockpit → Einrichtung …, ⌘,) prüft Claude Code (installieren/anmelden), git,
+   Projektordner, Vault, Dienst, Mitteilungen und „Beim Anmelden starten“.
 
-## Betrieb ohne App (alt)
+Voraussetzungen: Mac mit Apple-Chip und Claude Code. Alles andere bringt die App mit (offizielles Node 26 LTS und den
+Cockpit-Code). Protokoll: `~/Library/Logs/fah-cockpit.log`.
+
+## Entwicklung
 
 ```
-./werkzeuge/installieren.sh     # LaunchAgent de.fah.cockpit einrichten bzw. neu starten
-npm test                        # Tests (node --test)
+mac/bauen.sh                         # App bauen (Node einmal von nodejs.org, SHA-256 geprüft), signieren, Release-ZIP
+npm test                             # Tests (node --test)
 node werkzeuge/bildschirmfotos.mjs   # Bedienprobe + Bilder für „So sieht es aus“ (--nur-probe: ohne Bilder)
-tail ~/Library/Logs/fah-cockpit.log
 ```
 
-Umgebungsvariablen (optional): `COCKPIT_PORT` (8130), `COCKPIT_WURZEL` (~/claude), `COCKPIT_VAULT` (~/claude/Arbeit).
-Lauscht nur auf 127.0.0.1. Node ≥ 22, keine Fremdpakete.
+Ohne App läuft der Dienst auch direkt mit `npm start` (Node ≥ 22, keine Fremdpakete); den früheren LaunchAgent
+(`werkzeuge/installieren.sh`) nicht neben der App benutzen. Umgebungsvariablen (optional): `COCKPIT_PORT` (8130),
+`COCKPIT_WURZEL` (~/claude), `COCKPIT_VAULT` (~/claude/Arbeit). Lauscht nur auf 127.0.0.1.
 
 (c) 2026 Fabian Hammer – Alle Rechte vorbehalten.

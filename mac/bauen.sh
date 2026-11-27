@@ -37,6 +37,11 @@ cp "$BIN/FAHCockpit" "$APP/Contents/MacOS/FAHCockpit"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 cp Resources/AppIcon.icns "$APP/Contents/Resources/"
 cp -R ../src ../public ../package.json "$APP/Contents/Resources/cockpit/"
+# Kopfkommentar ohne Wohnadresse: die ZIP kann als GitHub-Release öffentlich werden, und dort greift die Text-Bereinigung
+# des Spiegels nicht (27.11.2026). „Erdacht und programmiert von …“ bleibt, nur der Rest der Zeile fällt weg.
+find "$APP/Contents/Resources/cockpit" -type f \( -name '*.js' -o -name '*.mjs' -o -name '*.css' -o -name '*.html' \) \
+  -exec perl -pi -e 's/(Erdacht und programmiert von [^,\n]+),[^\n]*/$1./' {} +
+if grep -rIqE "Erdacht und programmiert von [^,]+," "$APP/Contents/Resources/cockpit"; then echo "✖ Adresse im Kopfkommentar übrig"; exit 1; fi
 cp "$CACHE/$NODE_PAKET/bin/node" "$APP/Contents/Resources/node/bin/node"
 cp "$CACHE/$NODE_PAKET/LICENSE" "$APP/Contents/Resources/node/LICENSE"
 VERSION="$(python3 -c 'import json;print(json.load(open("../package.json"))["version"])')"
