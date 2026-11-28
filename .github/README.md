@@ -20,6 +20,11 @@ Alle Versionen: [Releases](https://github.com/Arachnolord/fah-cockpit/releases) 
 
 <img src="../docs/screenshots/projekt-bild-einfuegen.png" alt="Projektseite mit Auftrag und eingefügtem Bild" width="760">
 
+**Mehrere To-dos in einem Auftrag** – „Mehrere wählen“, To-dos antippen, dann „Als ein Auftrag erledigen“: Claude
+arbeitet sie der Reihe nach in einem Gespräch ab und pusht am Ende einmal gesammelt:
+
+<img src="../docs/screenshots/todos-mehrere-waehlen.png" alt="Mehrere To-dos auswählen" width="760">
+
 **Auftrag** – Claude arbeitet im Hintergrund, jeder Schritt mit Dauer und Ausgabe:
 
 <img src="../docs/screenshots/auftrag-mit-bild.png" alt="Laufender Auftrag mit Verlauf" width="760">
@@ -28,7 +33,7 @@ Alle Versionen: [Releases](https://github.com/Arachnolord/fah-cockpit/releases) 
 
 <img src="../docs/screenshots/freigabe.png" alt="Freigabe-Karte für einen git push" width="760">
 
-| Aufträge – mehrere gleichzeitig, der Rest in der Schlange | Offene To-dos über alle Projekte |
+| Aufträge – mehrere gleichzeitig, der Rest in der Schlange (vorziehen oder abbrechen) | Offene To-dos über alle Projekte |
 |---|---|
 | <img src="../docs/screenshots/auftraege.png" alt="Aufträge" width="380"> | <img src="../docs/screenshots/todos.png" alt="Offene To-dos" width="380"> |
 | **Notizen** | **Wissensnetz** |
@@ -54,7 +59,9 @@ Alle Versionen: [Releases](https://github.com/Arachnolord/fah-cockpit/releases) 
   mit den Abschnitten `## Stand`, `## Offen` (`- [ ] …`) und `## Erledigt`. Claude pflegt sie nach jedem Auftrag, du
   kannst sie im Cockpit selbst bearbeiten. Ein Kennzeichen vorn am To-do sortiert es: `(Betreiber)` für deine eigenen
   Schritte, `(Praxistest)` für Prüfungen am echten Gerät, `(optional)`.
-- **Aufträge:** „Erledigen“ an einem To-do oder eine eigene Anweisung auf der Projektseite. Bilder kommen mit ⌘V,
+- **Aufträge:** „Erledigen“ an einem To-do, „Mehrere wählen“ für mehrere To-dos in einem Auftrag oder eine eigene
+  Anweisung auf der Projektseite. Ein wartender Auftrag lässt sich mit „Abbrechen“ aus der Schlange nehmen: Seine To-dos
+  bleiben offen, eine eigene Anweisung kommt als To-do in die Stand-Datei. Bilder kommen mit ⌘V,
   durch Hineinziehen (auch aus der Vorschau oder aus Fotos) oder über „Bild …“ dazu. Während Claude arbeitet, kannst du
   nachschreiben. Bis zu fünf Aufträge laufen gleichzeitig (Standard drei), im selben Projekt immer einer nach dem anderen.
 - **Menüleiste:** Das Symbol zeigt, wenn ein Auftrag auf dich wartet, und das Nutzungslimit; dazu gibt es echte
