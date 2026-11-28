@@ -39,7 +39,12 @@ arbeitet sie der Reihe nach in einem Gespräch ab und pusht am Ende einmal gesam
 | **Notizen** | **Wissensnetz** |
 | <img src="../docs/screenshots/notizen.png" alt="Notizen" width="380"> | <img src="../docs/screenshots/wissensnetz.png" alt="Wissensnetz" width="380"> |
 
-**Einstellungen** – Modell, Aufwand, wie viele Aufträge parallel laufen, Anmeldung und Nutzungslimit:
+**Themes** – 18 Farbschemata nach Terminal-Vorbild (Profile der macOS-Terminal-App, Solarized, Dracula, Nord, Gruvbox,
+Tokyo Night …) oder „Wie macOS“; die Titelleiste färbt sich mit:
+
+<img src="../docs/screenshots/themen.png" alt="Dieselben Seiten in Basic, Solarized Dunkel, Dracula und Homebrew" width="760">
+
+**Einstellungen** – Aussehen, Modell, Aufwand, wie viele Aufträge parallel laufen, Anmeldung und Nutzungslimit:
 
 <img src="../docs/screenshots/einstellungen.png" alt="Einstellungen" width="760">
 
